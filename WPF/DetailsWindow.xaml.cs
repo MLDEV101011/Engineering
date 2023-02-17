@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Printing;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -48,13 +49,24 @@ namespace WPF
 
             if(printDlg.ShowDialog() == true)
             {
+                //frame = DetailsBorder;
+                //frame.BorderThickness = new Thickness(0);
+                //Size pageSize = new(printDlg.PrintableAreaWidth - 30, printDlg.PrintableAreaHeight - 30);
+                //frame.Measure(pageSize);
+                //frame.Arrange(new Rect(15,15,pageSize.Width,pageSize.Height));
+                //printDlg.PrintVisual(frame, "Details");
+
+
                 frame = DetailsBorder;
-                frame.BorderThickness = new Thickness(0);
-                Size pageSize = new(printDlg.PrintableAreaWidth - 30, printDlg.PrintableAreaHeight - 30);
-                frame.Measure(pageSize);
-                frame.Arrange(new Rect(15,15,pageSize.Width,pageSize.Height));
+                PrintCapabilities capabilities = printDlg.PrintQueue.GetPrintCapabilities(printDlg.PrintTicket);
+                double scale = Math.Min(capabilities.PageImageableArea.ExtentWidth / frame.ActualWidth, capabilities.PageImageableArea.ExtentHeight / frame.ActualHeight);
+                frame.LayoutTransform = new ScaleTransform(scale, scale);
+                Size size = new Size(capabilities.PageImageableArea.ExtentWidth, capabilities.PageImageableArea.ExtentHeight);
+                frame.Measure(size);
+                frame.Arrange(new Rect(new Point(capabilities.PageImageableArea.OriginWidth, capabilities.PageImageableArea.OriginHeight), size));
                 printDlg.PrintVisual(frame, "Details");
             }
+            ContentFrame.Content = new ViewDataPage(_materialObject);
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
