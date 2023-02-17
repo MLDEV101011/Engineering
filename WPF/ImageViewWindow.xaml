@@ -1,0 +1,21 @@
+﻿<Window x:Class="WPF.ImageViewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF"
+        mc:Ignorable="d"
+        Title="ImageViewWindow" Height="450" Width="800" WindowState="Maximized" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0">
+            <Border.Background>
+                <ImageBrush x:Name="ImagePreview" Stretch="UniformToFill"/>
+            </Border.Background>
+        </Border>
+    </Grid>
+</Window>
