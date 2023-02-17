@@ -22,9 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="no_image.png">
+    <Content Include="no_image.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
 
 </Project>

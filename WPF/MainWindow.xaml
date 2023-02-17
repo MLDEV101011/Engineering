@@ -6,7 +6,7 @@
     xmlns:fa="http://schemas.fontawesome.io/icons/"
     xmlns:local="clr-namespace:WPF"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="MainWindow"
+    Title="Versteel"
     MinWidth="1200"
     MinHeight="650"
     Loaded="Window_Loaded"
