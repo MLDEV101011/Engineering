@@ -2,9 +2,11 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net7.0-windows7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+    <AssemblyName>Verseteel Material Data Log</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,10 +20,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.3" />
-    <PackageReference Include="WpfWebcamControl" Version="3.3.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="logo.ico" />
     <Content Include="no_image.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
