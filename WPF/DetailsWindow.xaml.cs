@@ -32,14 +32,13 @@ namespace WPF
             InitializeComponent();
             ContentFrame.Content = new ViewDataPage(_materialObject);
             DetailsBorder = ViewDataPage.border;
-            CancelBorder.Visibility = Visibility.Hidden;
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
             ContentFrame.Content = new EditDataPage(_materialObject);
-            CancelBorder.Visibility = Visibility.Visible;
-            PrintBorder.Visibility = Visibility.Hidden;
+            PrintBorder.Visibility = Visibility.Collapsed;
+            EditBorder.Visibility = Visibility.Collapsed;
         }
 
         private void PrintBtn_Click(object sender, RoutedEventArgs e)
@@ -72,9 +71,9 @@ namespace WPF
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
             
-            ContentFrame.Content = new ViewDataPage(_materialObject);
-            CancelBorder.Visibility = Visibility.Hidden;
-            PrintBorder.Visibility = Visibility.Visible;
+            ContentFrame.Content = new ViewDataPage(_materialObject);            
         }
+
+        
     }
 }

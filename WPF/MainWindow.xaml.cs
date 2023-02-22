@@ -1,6 +1,10 @@
-﻿using Microsoft.Win32;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Threading;
 using System.Windows;
@@ -8,6 +12,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using WPF.Data;
 using WPF.Models;
 
@@ -28,6 +33,8 @@ namespace WPF
         List<string> matches = new();
         List<ImageObject> newImages = new();
 
+        public DataGrid DataGrid { get; set; }
+
         string searchTerm = "";
 
         List<MaterialObject> SearchResults = new();
@@ -35,7 +42,13 @@ namespace WPF
         public MainWindow()
         {
             InitializeComponent();
-
+            DataContext = context;
+            materials = context.Materials.Include(
+                x => x.ApprovedMatches).Include(
+                x => x.Images).Include
+                (x => x.Notes).ToList();
+            DataGrid = MaterialDataGrid;
+            MaterialDataGrid.ItemsSource = materials;
         }
 
         private void GetCheckBoxValues()
@@ -77,7 +90,8 @@ namespace WPF
 
         private void SearchEntry_LostFocus(object sender, RoutedEventArgs e)
         {
-
+            SearchEntry.Text = "Search";
+            SearchEntry.Foreground = new SolidColorBrush(Colors.Gray);
 
         }
 
@@ -87,6 +101,11 @@ namespace WPF
         }
 
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Search();
+        }
+
+        private void Search()
         {
             if (string.IsNullOrEmpty(searchTerm))
             {
@@ -99,7 +118,7 @@ namespace WPF
                     x.Vendor.ToLower().Contains(searchTerm.ToLower()) ||
                     x.Pattern.ToLower().Contains(searchTerm.ToLower()) ||
                     x.Color.Contains(searchTerm.ToLower()) ||
-                    x.ProductNum.ToLower().Contains(searchTerm.ToLower())));
+                    x.ProductNum.ToLower().Equals(searchTerm.ToLower())));
                 MaterialDataGrid.ItemsSource = null;
                 MaterialDataGrid.ItemsSource = SearchResults;
             }
@@ -114,16 +133,16 @@ namespace WPF
             MaterialDataGrid.ItemsSource = context.Materials.ToList();
         }
         private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
+        {            
             // get selected object
             var selectedMaterialObj = MaterialDataGrid.SelectedItem as MaterialObject;
 
-            selectedMaterialObj.Images = images.Where(x => x.MaterialId == selectedMaterialObj.Id).ToList();
-            selectedMaterialObj.Notes = notes.Where(x => x.MaterialId == selectedMaterialObj.Id).ToList();
-            selectedMaterialObj.ApprovedMatches = approvedMatches.Where(x => x.MaterialId == selectedMaterialObj.Id).ToList();
+            //selectedMaterialObj.Images = images.Where(x => x.MaterialId == selectedMaterialObj.Id).ToList();
+            //selectedMaterialObj.Notes = notes.Where(x => x.MaterialId == selectedMaterialObj.Id).ToList();
+            //selectedMaterialObj.ApprovedMatches = approvedMatches.Where(x => x.MaterialId == selectedMaterialObj.Id).ToList();
             DetailsWindow detailsWindow = new(selectedMaterialObj);
             detailsWindow.Show();
-        }
+        }        
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -131,8 +150,8 @@ namespace WPF
             approvedMatches = context.ApprovedMatches.ToList();
             notes = context.Notes.ToList();
             images = context.Images.ToList();
-            MaterialDataGrid.ItemsSource = materials;
-        }
+            //MaterialDataGrid.ItemsSource = materials; 
+        }        
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -141,14 +160,7 @@ namespace WPF
 
         private void SubmitBtn_Click(object sender, RoutedEventArgs e)
         {
-            var note = new NoteObject()
-            {
-                Content = NotesEntry.Text,
-                CreatedDate = DateTime.Now.ToShortDateString(),
-            };
-                      
-
-
+            
             var material = new MaterialObject()
             {
                 Vendor = VendorEntry.Text,
@@ -173,7 +185,7 @@ namespace WPF
                 Images = newImages
             };
 
-            material.Notes?.Add(note);
+            
             GetCheckBoxValues();
             foreach (var x in matches)
             {
@@ -236,6 +248,7 @@ namespace WPF
             RepeatDownEntry.Text = string.Empty;
             SalvageToMatchEntry.Text = string.Empty;
             FileInputTextBox.Text = string.Empty;
+            EndToMatchEntry.Text = string.Empty;    
             V2TextBox.Text = string.Empty;
             H2TextBox.Text = string.Empty;
             V2H2TextBox.Text = string.Empty;
@@ -329,7 +342,19 @@ namespace WPF
             }
         }
 
-        
-        
+        private void SearchEntry_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key== Key.Enter)
+            {
+                if(SearchEntry.Text.Length > 0)
+                {
+                    Search();
+                }
+                else
+                {
+                    MessageBox.Show("Search field is empty.", "Error");
+                }
+            }
+        }
     }
 }

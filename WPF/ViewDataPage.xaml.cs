@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,7 +33,7 @@ namespace WPF
         BitmapImage noImageImg = new(new Uri("no_image.png", UriKind.Relative));
         public ViewDataPage(MaterialObject materialObject)
         {
-            _materialObject = materialObject;
+            _materialObject = _context.Materials.Include(x => x.Images).Include(x => x.Notes).Include(x => x.ApprovedMatches).FirstOrDefault(v => v.Id.Equals(materialObject.Id)) as MaterialObject;
             InitializeComponent();
             border = DetailsView;
         }
@@ -62,7 +63,8 @@ namespace WPF
             // Handle notes list for material object
             if (_materialObject?.Notes?.Count != null)
             {
-                foreach (var note in _materialObject.Notes)
+                notes.Clear();
+                foreach (var note in _materialObject.Notes.Distinct())
                 {
                     notes.Add(note.Content + " - " + note.CreatedDate);
                 }
@@ -76,7 +78,8 @@ namespace WPF
             // Handle approved matches for material object
             if (_materialObject?.ApprovedMatches?.Count != null)
             {
-                foreach (var item in _materialObject.ApprovedMatches)
+                approvedMatches.Clear();
+                foreach (var item in _materialObject.ApprovedMatches.Distinct())
                 {
                     approvedMatches.Add(item?.MatchType);
                 }
@@ -90,7 +93,8 @@ namespace WPF
             // Handle Images for material object
             if (_materialObject?.Images?.Count > 0)
             {
-                foreach (var item in _materialObject.Images)
+                images.Clear();
+                foreach (var item in _materialObject.Images.Distinct())
                 {
                     images.Add(item?.FilePath);
                 }
@@ -100,72 +104,32 @@ namespace WPF
 
         void SetImages()
         {
-            int imageCount = images.Count;
-
-            if (imageCount == 1)
+            foreach (var img in _materialObject.Images)
             {
-                GetImage(MatchPointImage, images[0]);
-                OneBlankImage(H2Image);
-                OneBlankImage(V2Image);
-                OneBlankImage(V2H2Image);
-                OneBlankImage(FullRepeatImage);
-            }
-            else if (imageCount == 2)
-            {
-                GetImage(MatchPointImage, images[0]);
-                GetImage(V2Image, images[1]);
-                OneBlankImage(V2Image);
-                OneBlankImage(V2H2Image);
-                OneBlankImage(FullRepeatImage);
-            }
-            else if (imageCount == 3)
-            {
-                GetImage(MatchPointImage, images[0]);
-                GetImage(V2Image, images[1]);
-                GetImage(H2Image, images[2]);
-                OneBlankImage(V2H2Image);
-                OneBlankImage(FullRepeatImage);
-            }
-            else if (imageCount == 4)
-            {
-                GetImage(MatchPointImage, images[0]);
-                GetImage(V2Image, images[1]);
-                GetImage(H2Image, images[2]);
-                GetImage(V2H2Image, images[3]);
-                OneBlankImage(FullRepeatImage);
-            }
-            else if (imageCount == 5)
-            {
-                GetImage(MatchPointImage, images[0]);
-                GetImage(V2Image, images[1]);
-                GetImage(H2Image, images[2]);
-                GetImage(V2H2Image, images[3]);
-                GetImage(FullRepeatImage, images[4]);
-            }
-            else
-            {
-                AllBlankImages();
-            }
-
-
-        }
-        void GetImage(ImageBrush img, string path)
-        {
-            if (string.IsNullOrEmpty(path))
-            {
-                img.ImageSource = noImageImg;
-            }
-            else
-            {
-                img.ImageSource = new BitmapImage(new Uri(path));
-            }
+                if(img.Name == @"(MATCH POINT DETAIL VIEW)")
+                {
+                    MatchPointImage.ImageSource = new BitmapImage(new Uri(img.FilePath, UriKind.Relative));
+                }
+                if(img.Name == @"(V2 MATCH POINT DETAIL VIEW)")
+                {
+                    V2Image.ImageSource = new BitmapImage(new Uri(img.FilePath, UriKind.Relative));
+                }                
+                if(img.Name == @"(H2 MATCH POINT DETAIL VIEW)")
+                {
+                    H2Image.ImageSource = new BitmapImage(new Uri(img.FilePath, UriKind.Relative));
+                }
+                if(img.Name == @"(V2H2 MATCH POINT DETAIL VIEW)")
+                {
+                    V2H2Image.ImageSource = new BitmapImage(new Uri(img.FilePath, UriKind.Relative));
+                }
+                if(img.Name == @"(FULL REPEAT/MATCH POINT DETAIL VIEW)")
+                {
+                    FullRepeatImage.ImageSource = new BitmapImage(new Uri(img.FilePath, UriKind.Relative));
+                }
+            }            
         }
 
-        void OneBlankImage(ImageBrush img)
-        {
-            img.ImageSource = noImageImg;
-        }
-
+        
         void AllBlankImages()
         {
             MatchPointImage.ImageSource = noImageImg;

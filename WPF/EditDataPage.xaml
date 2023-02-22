@@ -6,9 +6,1750 @@
     xmlns:local="clr-namespace:WPF"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="EditDataPage"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    Background="White"
+    Loaded="Page_Loaded"
     mc:Ignorable="d">
 
-    <Grid />
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <Border
+            Grid.Column="1"
+            Padding="20"
+            BorderBrush="Black"
+            BorderThickness="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+
+                <ScrollViewer
+                    Grid.Row="0"
+                    HorizontalScrollBarVisibility="Disabled"
+                    VerticalScrollBarVisibility="Auto">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock
+                            x:Name="TitleText"
+                            HorizontalAlignment="Center"
+                            FontSize="25" />
+                        <WrapPanel Margin="0,30,0,0" Orientation="Horizontal">
+                            <StackPanel
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="Vendor " />
+                                <Border
+                                    Width="200"
+                                    VerticalAlignment="Center"
+                                    Background="White"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+                                    <TextBox
+                                        x:Name="VendorTextBox"
+                                        Padding="5"
+                                        AcceptsReturn="True"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        FontSize="16">
+                                        <TextBox.Style>
+                                            <Style TargetType="TextBox">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                                            <Border
+                                                                x:Name="border"
+                                                                Background="{TemplateBinding Background}"
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                SnapsToDevicePixels="True">
+                                                                <ScrollViewer
+                                                                    x:Name="PART_ContentHost"
+                                                                    Focusable="false"
+                                                                    HorizontalScrollBarVisibility="Hidden"
+                                                                    VerticalScrollBarVisibility="Hidden" />
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsEnabled" Value="false">
+                                                                    <Setter TargetName="border" Property="Opacity" Value="0.56" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsMouseOver" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsFocused" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </TextBox.Style>
+                                    </TextBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="Pattern " />
+                                <Border
+                                    Width="200"
+                                    VerticalAlignment="Center"
+                                    Background="White"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+                                    <TextBox
+                                        x:Name="PatternTextBox"
+                                        Padding="5"
+                                        AcceptsReturn="True"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        FontSize="16">
+                                        <TextBox.Style>
+                                            <Style TargetType="TextBox">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                                            <Border
+                                                                x:Name="border"
+                                                                Background="{TemplateBinding Background}"
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                SnapsToDevicePixels="True">
+                                                                <ScrollViewer
+                                                                    x:Name="PART_ContentHost"
+                                                                    Focusable="false"
+                                                                    HorizontalScrollBarVisibility="Hidden"
+                                                                    VerticalScrollBarVisibility="Hidden" />
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsEnabled" Value="false">
+                                                                    <Setter TargetName="border" Property="Opacity" Value="0.56" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsMouseOver" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsFocused" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </TextBox.Style>
+                                    </TextBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="Color " />
+                                <Border
+                                    Width="125"
+                                    VerticalAlignment="Center"
+                                    Background="White"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+                                    <TextBox
+                                        x:Name="ColorTextBox"
+                                        Padding="5"
+                                        AcceptsReturn="True"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        FontSize="16">
+                                        <TextBox.Style>
+                                            <Style TargetType="TextBox">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                                            <Border
+                                                                x:Name="border"
+                                                                Background="{TemplateBinding Background}"
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                SnapsToDevicePixels="True">
+                                                                <ScrollViewer
+                                                                    x:Name="PART_ContentHost"
+                                                                    Focusable="false"
+                                                                    HorizontalScrollBarVisibility="Hidden"
+                                                                    VerticalScrollBarVisibility="Hidden" />
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsEnabled" Value="false">
+                                                                    <Setter TargetName="border" Property="Opacity" Value="0.56" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsMouseOver" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsFocused" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </TextBox.Style>
+                                    </TextBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="Product Number " />
+                                <Border
+                                    Width="125"
+                                    VerticalAlignment="Center"
+                                    Background="White"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+                                    <TextBox
+                                        x:Name="ProdNumTextBox"
+                                        Padding="5"
+                                        AcceptsReturn="True"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        FontSize="16">
+                                        <TextBox.Style>
+                                            <Style TargetType="TextBox">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                                            <Border
+                                                                x:Name="border"
+                                                                Background="{TemplateBinding Background}"
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                SnapsToDevicePixels="True">
+                                                                <ScrollViewer
+                                                                    x:Name="PART_ContentHost"
+                                                                    Focusable="false"
+                                                                    HorizontalScrollBarVisibility="Hidden"
+                                                                    VerticalScrollBarVisibility="Hidden" />
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsEnabled" Value="false">
+                                                                    <Setter TargetName="border" Property="Opacity" Value="0.56" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsMouseOver" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsFocused" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </TextBox.Style>
+                                    </TextBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="Vert. Repeat " />
+                                <Border
+                                    Width="125"
+                                    VerticalAlignment="Center"
+                                    Background="White"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+                                    <TextBox
+                                        x:Name="VertRepeatTextBox"
+                                        Padding="5"
+                                        AcceptsReturn="True"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        FontSize="16">
+                                        <TextBox.Style>
+                                            <Style TargetType="TextBox">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                                            <Border
+                                                                x:Name="border"
+                                                                Background="{TemplateBinding Background}"
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                SnapsToDevicePixels="True">
+                                                                <ScrollViewer
+                                                                    x:Name="PART_ContentHost"
+                                                                    Focusable="false"
+                                                                    HorizontalScrollBarVisibility="Hidden"
+                                                                    VerticalScrollBarVisibility="Hidden" />
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsEnabled" Value="false">
+                                                                    <Setter TargetName="border" Property="Opacity" Value="0.56" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsMouseOver" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsFocused" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </TextBox.Style>
+                                    </TextBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="Horz. Repeat " />
+                                <Border
+                                    Width="125"
+                                    VerticalAlignment="Center"
+                                    Background="White"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+                                    <TextBox
+                                        x:Name="HorzRepeatTextBox"
+                                        Padding="5"
+                                        AcceptsReturn="True"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        FontSize="16">
+                                        <TextBox.Style>
+                                            <Style TargetType="TextBox">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                                            <Border
+                                                                x:Name="border"
+                                                                Background="{TemplateBinding Background}"
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                SnapsToDevicePixels="True">
+                                                                <ScrollViewer
+                                                                    x:Name="PART_ContentHost"
+                                                                    Focusable="false"
+                                                                    HorizontalScrollBarVisibility="Hidden"
+                                                                    VerticalScrollBarVisibility="Hidden" />
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsEnabled" Value="false">
+                                                                    <Setter TargetName="border" Property="Opacity" Value="0.56" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsMouseOver" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsFocused" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </TextBox.Style>
+                                    </TextBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="Railroaded " />
+                                <Border
+                                    Width="125"
+                                    VerticalAlignment="Center"
+                                    Background="White"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+                                    <ComboBox
+                                        x:Name="RailroadedComboBox"
+                                        Padding="5"
+                                        Background="Transparent"
+                                        FontSize="16"
+                                        IsEditable="True"
+                                        IsReadOnly="True">
+                                        <ComboBoxItem Content="OB" FontSize="16" />
+                                        <ComboBoxItem Content="RR" FontSize="16" />
+                                        <ComboBoxItem Content="OB/RR" FontSize="16" />
+                                        <ComboBoxItem Content="Leather" FontSize="16" />
+                                    </ComboBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="Durability " />
+                                <Border
+                                    Width="125"
+                                    VerticalAlignment="Center"
+                                    Background="White"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+                                    <TextBox
+                                        x:Name="DurabilityTextBox"
+                                        Padding="5"
+                                        AcceptsReturn="True"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        FontSize="16">
+                                        <TextBox.Style>
+                                            <Style TargetType="TextBox">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                                            <Border
+                                                                x:Name="border"
+                                                                Background="{TemplateBinding Background}"
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                SnapsToDevicePixels="True">
+                                                                <ScrollViewer
+                                                                    x:Name="PART_ContentHost"
+                                                                    Focusable="false"
+                                                                    HorizontalScrollBarVisibility="Hidden"
+                                                                    VerticalScrollBarVisibility="Hidden" />
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsEnabled" Value="false">
+                                                                    <Setter TargetName="border" Property="Opacity" Value="0.56" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsMouseOver" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsFocused" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </TextBox.Style>
+                                    </TextBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="Width " />
+                                <Border
+                                    Width="125"
+                                    VerticalAlignment="Center"
+                                    Background="White"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+                                    <TextBox
+                                        x:Name="WidthTextBox"
+                                        Padding="5"
+                                        AcceptsReturn="True"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        FontSize="16">
+                                        <TextBox.Style>
+                                            <Style TargetType="TextBox">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                                            <Border
+                                                                x:Name="border"
+                                                                Background="{TemplateBinding Background}"
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                SnapsToDevicePixels="True">
+                                                                <ScrollViewer
+                                                                    x:Name="PART_ContentHost"
+                                                                    Focusable="false"
+                                                                    HorizontalScrollBarVisibility="Hidden"
+                                                                    VerticalScrollBarVisibility="Hidden" />
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsEnabled" Value="false">
+                                                                    <Setter TargetName="border" Property="Opacity" Value="0.56" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsMouseOver" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsFocused" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </TextBox.Style>
+                                    </TextBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="Weight " />
+                                <Border
+                                    Width="125"
+                                    VerticalAlignment="Center"
+                                    Background="White"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+                                    <TextBox
+                                        x:Name="WeightTextBox"
+                                        Padding="5"
+                                        AcceptsReturn="True"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        FontSize="16">
+                                        <TextBox.Style>
+                                            <Style TargetType="TextBox">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                                            <Border
+                                                                x:Name="border"
+                                                                Background="{TemplateBinding Background}"
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                SnapsToDevicePixels="True">
+                                                                <ScrollViewer
+                                                                    x:Name="PART_ContentHost"
+                                                                    Focusable="false"
+                                                                    HorizontalScrollBarVisibility="Hidden"
+                                                                    VerticalScrollBarVisibility="Hidden" />
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsEnabled" Value="false">
+                                                                    <Setter TargetName="border" Property="Opacity" Value="0.56" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsMouseOver" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsFocused" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </TextBox.Style>
+                                    </TextBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="Roll Width " />
+                                <Border
+                                    Width="125"
+                                    VerticalAlignment="Center"
+                                    Background="White"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+                                    <TextBox
+                                        x:Name="RollWidthTextBox"
+                                        Padding="5"
+                                        AcceptsReturn="True"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        FontSize="16">
+                                        <TextBox.Style>
+                                            <Style TargetType="TextBox">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                                            <Border
+                                                                x:Name="border"
+                                                                Background="{TemplateBinding Background}"
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                SnapsToDevicePixels="True">
+                                                                <ScrollViewer
+                                                                    x:Name="PART_ContentHost"
+                                                                    Focusable="false"
+                                                                    HorizontalScrollBarVisibility="Hidden"
+                                                                    VerticalScrollBarVisibility="Hidden" />
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsEnabled" Value="false">
+                                                                    <Setter TargetName="border" Property="Opacity" Value="0.56" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsMouseOver" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsFocused" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </TextBox.Style>
+                                    </TextBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="Usable Width " />
+                                <Border
+                                    Width="125"
+                                    VerticalAlignment="Center"
+                                    Background="White"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+                                    <TextBox
+                                        x:Name="UsableWidthTextBox"
+                                        Padding="5"
+                                        AcceptsReturn="True"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        FontSize="16">
+                                        <TextBox.Style>
+                                            <Style TargetType="TextBox">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                                            <Border
+                                                                x:Name="border"
+                                                                Background="{TemplateBinding Background}"
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                SnapsToDevicePixels="True">
+                                                                <ScrollViewer
+                                                                    x:Name="PART_ContentHost"
+                                                                    Focusable="false"
+                                                                    HorizontalScrollBarVisibility="Hidden"
+                                                                    VerticalScrollBarVisibility="Hidden" />
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsEnabled" Value="false">
+                                                                    <Setter TargetName="border" Property="Opacity" Value="0.56" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsMouseOver" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsFocused" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </TextBox.Style>
+                                    </TextBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="Stretch Across Roll Width " />
+                                <Border
+                                    Width="125"
+                                    VerticalAlignment="Center"
+                                    Background="White"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+                                    <TextBox
+                                        x:Name="StretchAcrossTextBox"
+                                        Padding="5"
+                                        AcceptsReturn="True"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        FontSize="16">
+                                        <TextBox.Style>
+                                            <Style TargetType="TextBox">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                                            <Border
+                                                                x:Name="border"
+                                                                Background="{TemplateBinding Background}"
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                SnapsToDevicePixels="True">
+                                                                <ScrollViewer
+                                                                    x:Name="PART_ContentHost"
+                                                                    Focusable="false"
+                                                                    HorizontalScrollBarVisibility="Hidden"
+                                                                    VerticalScrollBarVisibility="Hidden" />
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsEnabled" Value="false">
+                                                                    <Setter TargetName="border" Property="Opacity" Value="0.56" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsMouseOver" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsFocused" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </TextBox.Style>
+                                    </TextBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="Stretch Down Roll Length " />
+                                <Border
+                                    Width="125"
+                                    VerticalAlignment="Center"
+                                    Background="White"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+                                    <TextBox
+                                        x:Name="StretchDownTextBox"
+                                        Padding="5"
+                                        AcceptsReturn="True"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        FontSize="16">
+                                        <TextBox.Style>
+                                            <Style TargetType="TextBox">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                                            <Border
+                                                                x:Name="border"
+                                                                Background="{TemplateBinding Background}"
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                SnapsToDevicePixels="True">
+                                                                <ScrollViewer
+                                                                    x:Name="PART_ContentHost"
+                                                                    Focusable="false"
+                                                                    HorizontalScrollBarVisibility="Hidden"
+                                                                    VerticalScrollBarVisibility="Hidden" />
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsEnabled" Value="false">
+                                                                    <Setter TargetName="border" Property="Opacity" Value="0.56" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsMouseOver" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsFocused" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </TextBox.Style>
+                                    </TextBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="Repeat Across Roll Width " />
+                                <Border
+                                    Width="125"
+                                    VerticalAlignment="Center"
+                                    Background="White"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+                                    <TextBox
+                                        x:Name="RepeatAcrossTextBox"
+                                        Padding="5"
+                                        AcceptsReturn="True"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        FontSize="16">
+                                        <TextBox.Style>
+                                            <Style TargetType="TextBox">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                                            <Border
+                                                                x:Name="border"
+                                                                Background="{TemplateBinding Background}"
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                SnapsToDevicePixels="True">
+                                                                <ScrollViewer
+                                                                    x:Name="PART_ContentHost"
+                                                                    Focusable="false"
+                                                                    HorizontalScrollBarVisibility="Hidden"
+                                                                    VerticalScrollBarVisibility="Hidden" />
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsEnabled" Value="false">
+                                                                    <Setter TargetName="border" Property="Opacity" Value="0.56" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsMouseOver" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsFocused" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </TextBox.Style>
+                                    </TextBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="Salvage to Match " />
+                                <Border
+                                    Width="125"
+                                    VerticalAlignment="Center"
+                                    Background="White"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+                                    <TextBox
+                                        x:Name="SavlageToMatchTextBox"
+                                        Padding="5"
+                                        AcceptsReturn="True"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        FontSize="16">
+                                        <TextBox.Style>
+                                            <Style TargetType="TextBox">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                                            <Border
+                                                                x:Name="border"
+                                                                Background="{TemplateBinding Background}"
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                SnapsToDevicePixels="True">
+                                                                <ScrollViewer
+                                                                    x:Name="PART_ContentHost"
+                                                                    Focusable="false"
+                                                                    HorizontalScrollBarVisibility="Hidden"
+                                                                    VerticalScrollBarVisibility="Hidden" />
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsEnabled" Value="false">
+                                                                    <Setter TargetName="border" Property="Opacity" Value="0.56" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsMouseOver" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsFocused" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </TextBox.Style>
+                                    </TextBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="Repeat Down Length " />
+                                <Border
+                                    Width="125"
+                                    VerticalAlignment="Center"
+                                    Background="White"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+                                    <TextBox
+                                        x:Name="RepeatDownTextBox"
+                                        Padding="5"
+                                        AcceptsReturn="True"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        FontSize="16">
+                                        <TextBox.Style>
+                                            <Style TargetType="TextBox">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                                            <Border
+                                                                x:Name="border"
+                                                                Background="{TemplateBinding Background}"
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                SnapsToDevicePixels="True">
+                                                                <ScrollViewer
+                                                                    x:Name="PART_ContentHost"
+                                                                    Focusable="false"
+                                                                    HorizontalScrollBarVisibility="Hidden"
+                                                                    VerticalScrollBarVisibility="Hidden" />
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsEnabled" Value="false">
+                                                                    <Setter TargetName="border" Property="Opacity" Value="0.56" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsMouseOver" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsFocused" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </TextBox.Style>
+                                    </TextBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="End of Roll to Match " />
+                                <Border
+                                    Width="125"
+                                    VerticalAlignment="Center"
+                                    Background="White"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+                                    <TextBox
+                                        x:Name="EndOfRollTextBox"
+                                        Padding="5"
+                                        AcceptsReturn="True"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        FontSize="16">
+                                        <TextBox.Style>
+                                            <Style TargetType="TextBox">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                                            <Border
+                                                                x:Name="border"
+                                                                Background="{TemplateBinding Background}"
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                SnapsToDevicePixels="True">
+                                                                <ScrollViewer
+                                                                    x:Name="PART_ContentHost"
+                                                                    Focusable="false"
+                                                                    HorizontalScrollBarVisibility="Hidden"
+                                                                    VerticalScrollBarVisibility="Hidden" />
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsEnabled" Value="false">
+                                                                    <Setter TargetName="border" Property="Opacity" Value="0.56" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsMouseOver" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsFocused" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </TextBox.Style>
+                                    </TextBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Margin="10" Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="Approved Matching " />
+                                <Border
+                                    Width="200"
+                                    HorizontalAlignment="Left"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+                                    <ComboBox
+                                        x:Name="ApprovedMatchingCombobox"
+                                        Background="White"
+                                        FontSize="16">
+                                        <ComboBoxItem>
+                                            <CheckBox x:Name="PlainCheck" Content="Plain" />
+                                        </ComboBoxItem>
+                                        <ComboBoxItem>
+                                            <CheckBox x:Name="RandomCheck" Content="Random" />
+                                        </ComboBoxItem>
+                                        <ComboBoxItem>
+                                            <CheckBox x:Name="VertCheck" Content="Vert. Align" />
+                                        </ComboBoxItem>
+                                        <ComboBoxItem>
+                                            <CheckBox x:Name="HorzCheck" Content="Horz. Align" />
+                                        </ComboBoxItem>
+                                        <ComboBoxItem>
+                                            <CheckBox x:Name="CenterCheck" Content="Center" />
+                                        </ComboBoxItem>
+                                        <ComboBoxItem>
+                                            <CheckBox x:Name="FlowCheck" Content="Flow" />
+                                        </ComboBoxItem>
+                                    </ComboBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="Notes " />
+                                <Border
+                                    Width="250"
+                                    VerticalAlignment="Center"
+                                    Background="White"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+                                    <TextBox
+                                        x:Name="NotesTextBox"
+                                        Padding="5"
+                                        AcceptsReturn="True"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        FontSize="16">
+                                        <TextBox.Style>
+                                            <Style TargetType="TextBox">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                                            <Border
+                                                                x:Name="border"
+                                                                Background="{TemplateBinding Background}"
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                SnapsToDevicePixels="True">
+                                                                <ScrollViewer
+                                                                    x:Name="PART_ContentHost"
+                                                                    Focusable="false"
+                                                                    HorizontalScrollBarVisibility="Hidden"
+                                                                    VerticalScrollBarVisibility="Hidden" />
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsEnabled" Value="false">
+                                                                    <Setter TargetName="border" Property="Opacity" Value="0.56" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsMouseOver" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsFocused" Value="true">
+                                                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </TextBox.Style>
+                                    </TextBox>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Margin="10" Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="Match Point Detial View " />
+                                <Border
+                                    Width="312"
+                                    HorizontalAlignment="Left"
+                                    Background="White"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="75" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox
+                                            x:Name="MatchPointInputTextBox"
+                                            Grid.Column="0"
+                                            Width="200"
+                                            Padding="5"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            Cursor="No"
+                                            Focusable="False"
+                                            FontSize="16">
+                                            <TextBox.Style>
+                                                <Style TargetType="TextBox">
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type TextBox}">
+                                                                <Border
+                                                                    x:Name="border"
+                                                                    Background="{TemplateBinding Background}"
+                                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                                    SnapsToDevicePixels="True">
+                                                                    <ScrollViewer
+                                                                        x:Name="PART_ContentHost"
+                                                                        Focusable="false"
+                                                                        HorizontalScrollBarVisibility="Hidden"
+                                                                        VerticalScrollBarVisibility="Hidden" />
+                                                                </Border>
+                                                                <ControlTemplate.Triggers>
+                                                                    <Trigger Property="IsEnabled" Value="false">
+                                                                        <Setter TargetName="border" Property="Opacity" Value="0.56" />
+                                                                    </Trigger>
+                                                                    <Trigger Property="IsMouseOver" Value="true">
+                                                                        <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                    </Trigger>
+                                                                    <Trigger Property="IsFocused" Value="true">
+                                                                        <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                    </Trigger>
+                                                                </ControlTemplate.Triggers>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </TextBox.Style>
+                                        </TextBox>
+                                        <Border
+                                            Grid.Column="1"
+                                            Background="LightGray"
+                                            CornerRadius="0,5,5,0">
+                                            <Button
+                                                x:Name="MatchPointFileBtn"
+                                                Width="75"
+                                                HorizontalAlignment="Right"
+                                                BorderBrush="Transparent"
+                                                Click="MatchPointFileBtn_Click"
+                                                Content="Browse"
+                                                Cursor="Hand"
+                                                FontSize="14">
+                                                <Button.Style>
+                                                    <Style TargetType="{x:Type Button}">
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                                    <Border
+                                                                        Background="Transparent"
+                                                                        BorderBrush="Black"
+                                                                        BorderThickness="0">
+                                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                                    </Border>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background" Value="DarkGray" />
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Button.Style>
+                                            </Button>
+                                        </Border>
+
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel Margin="10" Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="V2 Match Point Detail View " />
+                                <Border
+                                    Width="312"
+                                    HorizontalAlignment="Left"
+                                    Background="White"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="75" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox
+                                            x:Name="V2TextBox"
+                                            Grid.Column="0"
+                                            Width="200"
+                                            Padding="5"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            Cursor="No"
+                                            Focusable="False"
+                                            FontSize="16">
+                                            <TextBox.Style>
+                                                <Style TargetType="TextBox">
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type TextBox}">
+                                                                <Border
+                                                                    x:Name="border"
+                                                                    Background="{TemplateBinding Background}"
+                                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                                    SnapsToDevicePixels="True">
+                                                                    <ScrollViewer
+                                                                        x:Name="PART_ContentHost"
+                                                                        Focusable="false"
+                                                                        HorizontalScrollBarVisibility="Hidden"
+                                                                        VerticalScrollBarVisibility="Hidden" />
+                                                                </Border>
+                                                                <ControlTemplate.Triggers>
+                                                                    <Trigger Property="IsEnabled" Value="false">
+                                                                        <Setter TargetName="border" Property="Opacity" Value="0.56" />
+                                                                    </Trigger>
+                                                                    <Trigger Property="IsMouseOver" Value="true">
+                                                                        <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                    </Trigger>
+                                                                    <Trigger Property="IsFocused" Value="true">
+                                                                        <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                    </Trigger>
+                                                                </ControlTemplate.Triggers>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </TextBox.Style>
+                                        </TextBox>
+                                        <Border
+                                            Grid.Column="1"
+                                            Background="LightGray"
+                                            CornerRadius="0,5,5,0">
+                                            <Button
+                                                x:Name="V2FileBtn"
+                                                Width="75"
+                                                HorizontalAlignment="Right"
+                                                BorderBrush="Transparent"
+                                                Click="V2FileBtn_Click"
+                                                Content="Browse"
+                                                Cursor="Hand"
+                                                FontSize="14">
+                                                <Button.Style>
+                                                    <Style TargetType="{x:Type Button}">
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                                    <Border
+                                                                        Background="Transparent"
+                                                                        BorderBrush="Black"
+                                                                        BorderThickness="0">
+                                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                                    </Border>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background" Value="DarkGray" />
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Button.Style>
+                                            </Button>
+                                        </Border>
+
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel Margin="10" Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="H2 Match Point Detail View " />
+                                <Border
+                                    Width="312"
+                                    HorizontalAlignment="Left"
+                                    Background="White"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="75" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox
+                                            x:Name="H2TextBox"
+                                            Grid.Column="0"
+                                            Width="200"
+                                            Padding="5"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            Cursor="No"
+                                            Focusable="False"
+                                            FontSize="16">
+                                            <TextBox.Style>
+                                                <Style TargetType="TextBox">
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type TextBox}">
+                                                                <Border
+                                                                    x:Name="border"
+                                                                    Background="{TemplateBinding Background}"
+                                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                                    SnapsToDevicePixels="True">
+                                                                    <ScrollViewer
+                                                                        x:Name="PART_ContentHost"
+                                                                        Focusable="false"
+                                                                        HorizontalScrollBarVisibility="Hidden"
+                                                                        VerticalScrollBarVisibility="Hidden" />
+                                                                </Border>
+                                                                <ControlTemplate.Triggers>
+                                                                    <Trigger Property="IsEnabled" Value="false">
+                                                                        <Setter TargetName="border" Property="Opacity" Value="0.56" />
+                                                                    </Trigger>
+                                                                    <Trigger Property="IsMouseOver" Value="true">
+                                                                        <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                    </Trigger>
+                                                                    <Trigger Property="IsFocused" Value="true">
+                                                                        <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                    </Trigger>
+                                                                </ControlTemplate.Triggers>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </TextBox.Style>
+                                        </TextBox>
+                                        <Border
+                                            Grid.Column="1"
+                                            Background="LightGray"
+                                            CornerRadius="0,5,5,0">
+                                            <Button
+                                                x:Name="H2FileBtn"
+                                                Width="75"
+                                                HorizontalAlignment="Right"
+                                                BorderBrush="Transparent"
+                                                Click="H2FileBtn_Click"
+                                                Content="Browse"
+                                                Cursor="Hand"
+                                                FontSize="14">
+                                                <Button.Style>
+                                                    <Style TargetType="{x:Type Button}">
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                                    <Border
+                                                                        Background="Transparent"
+                                                                        BorderBrush="Black"
+                                                                        BorderThickness="0">
+                                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                                    </Border>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background" Value="DarkGray" />
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Button.Style>
+                                            </Button>
+                                        </Border>
+
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel Margin="10" Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="V2H2 Match Point Detail View " />
+                                <Border
+                                    Width="312"
+                                    HorizontalAlignment="Left"
+                                    Background="White"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="75" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox
+                                            x:Name="V2H2TextBox"
+                                            Grid.Column="0"
+                                            Width="200"
+                                            Padding="5"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            Cursor="No"
+                                            Focusable="False"
+                                            FontSize="16">
+                                            <TextBox.Style>
+                                                <Style TargetType="TextBox">
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type TextBox}">
+                                                                <Border
+                                                                    x:Name="border"
+                                                                    Background="{TemplateBinding Background}"
+                                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                                    SnapsToDevicePixels="True">
+                                                                    <ScrollViewer
+                                                                        x:Name="PART_ContentHost"
+                                                                        Focusable="false"
+                                                                        HorizontalScrollBarVisibility="Hidden"
+                                                                        VerticalScrollBarVisibility="Hidden" />
+                                                                </Border>
+                                                                <ControlTemplate.Triggers>
+                                                                    <Trigger Property="IsEnabled" Value="false">
+                                                                        <Setter TargetName="border" Property="Opacity" Value="0.56" />
+                                                                    </Trigger>
+                                                                    <Trigger Property="IsMouseOver" Value="true">
+                                                                        <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                    </Trigger>
+                                                                    <Trigger Property="IsFocused" Value="true">
+                                                                        <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                    </Trigger>
+                                                                </ControlTemplate.Triggers>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </TextBox.Style>
+                                        </TextBox>
+                                        <Border
+                                            Grid.Column="1"
+                                            Background="LightGray"
+                                            CornerRadius="0,5,5,0">
+                                            <Button
+                                                x:Name="V2H2FileBtn"
+                                                Width="75"
+                                                HorizontalAlignment="Right"
+                                                BorderBrush="Transparent"
+                                                Click="V2H2FileBtn_Click"
+                                                Content="Browse"
+                                                Cursor="Hand"
+                                                FontSize="14">
+                                                <Button.Style>
+                                                    <Style TargetType="{x:Type Button}">
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                                    <Border
+                                                                        Background="Transparent"
+                                                                        BorderBrush="Black"
+                                                                        BorderThickness="0">
+                                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                                    </Border>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background" Value="DarkGray" />
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Button.Style>
+                                            </Button>
+                                        </Border>
+
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel
+                                Margin="10"
+                                VerticalAlignment="Center"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    Text="Full Repeat/Match Point Detail View " />
+                                <Border
+                                    Width="312"
+                                    HorizontalAlignment="Left"
+                                    Background="White"
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    CornerRadius="5">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="75" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox
+                                            x:Name="FullRepeatTextBox"
+                                            Grid.Column="0"
+                                            Width="200"
+                                            Padding="5"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            Cursor="No"
+                                            Focusable="False"
+                                            FontSize="16">
+                                            <TextBox.Style>
+                                                <Style TargetType="TextBox">
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type TextBox}">
+                                                                <Border
+                                                                    x:Name="border"
+                                                                    Background="{TemplateBinding Background}"
+                                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                                    SnapsToDevicePixels="True">
+                                                                    <ScrollViewer
+                                                                        x:Name="PART_ContentHost"
+                                                                        Focusable="false"
+                                                                        HorizontalScrollBarVisibility="Hidden"
+                                                                        VerticalScrollBarVisibility="Hidden" />
+                                                                </Border>
+                                                                <ControlTemplate.Triggers>
+                                                                    <Trigger Property="IsEnabled" Value="false">
+                                                                        <Setter TargetName="border" Property="Opacity" Value="0.56" />
+                                                                    </Trigger>
+                                                                    <Trigger Property="IsMouseOver" Value="true">
+                                                                        <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                    </Trigger>
+                                                                    <Trigger Property="IsFocused" Value="true">
+                                                                        <Setter TargetName="border" Property="BorderBrush" Value="Transparent" />
+                                                                    </Trigger>
+                                                                </ControlTemplate.Triggers>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </TextBox.Style>
+                                        </TextBox>
+                                        <Border
+                                            Grid.Column="1"
+                                            Background="LightGray"
+                                            CornerRadius="0,5,5,0">
+                                            <Button
+                                                x:Name="FullRepeatFileBtn"
+                                                Width="75"
+                                                HorizontalAlignment="Right"
+                                                BorderBrush="Transparent"
+                                                Click="FullRepeatFileBtn_Click"
+                                                Content="Browse"
+                                                Cursor="Hand"
+                                                FontSize="14">
+                                                <Button.Style>
+                                                    <Style TargetType="{x:Type Button}">
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                                    <Border
+                                                                        Background="Transparent"
+                                                                        BorderBrush="Black"
+                                                                        BorderThickness="0">
+                                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                                    </Border>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background" Value="DarkGray" />
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Button.Style>
+                                            </Button>
+                                        </Border>
+
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+
+                        </WrapPanel>
+                    </StackPanel>
+                </ScrollViewer>
+
+                <StackPanel
+                    Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+                    <Border
+                        Width="100"
+                        Height="35"
+                        Margin="10,0"
+                        Background="Red"
+                        BorderBrush="Black"
+                        BorderThickness="0"
+                        CornerRadius="5">
+                        <Button
+                            x:Name="CancelBtn"
+                            Grid.Column="1"
+                            Width="75"
+                            Click="CancelBtn_Click"
+                            Content="Delete"
+                            Cursor="Hand"
+                            FontSize="14"
+                            Foreground="White">
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border
+                                                    Background="Transparent"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="0">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="LightGray" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </Border>
+                    <Border
+                        Width="100"
+                        Height="35"
+                        HorizontalAlignment="Right"
+                        Background="Green"
+                        BorderBrush="Black"
+                        BorderThickness="0"
+                        CornerRadius="5">
+                        <Button
+                            x:Name="SubmitBtn"
+                            Click="SubmitBtn_Click"
+                            Content="Submit"
+                            Cursor="Hand"
+                            Foreground="White">
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border
+                                                    Background="Transparent"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="0">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="LightGray" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </Border>
+                </StackPanel>
+
+            </Grid>
+
+        </Border>
+
+    </Grid>
 </Page>
