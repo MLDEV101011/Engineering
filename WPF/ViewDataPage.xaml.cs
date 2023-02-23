@@ -28,16 +28,16 @@ namespace WPF
         List<string> notes = new();
         List<string> images = new();
 
-        public static Border border;
-        public static ScrollViewer scrollViewer;
+        public static FlowDocument flowDoc;
+        public static StackPanel stackPanel;
 
         BitmapImage noImageImg = new(new Uri("no_image.png", UriKind.Relative));
         public ViewDataPage(MaterialObject materialObject)
         {
             _materialObject = _context.Materials.Include(x => x.Images).Include(x => x.Notes).Include(x => x.ApprovedMatches).FirstOrDefault(v => v.Id.Equals(materialObject.Id)) as MaterialObject;
             InitializeComponent();
-            border = DetailsView;
-            scrollViewer = ScrollViewer1;
+            flowDoc = FlowDocument1;
+            stackPanel = Thumbnails;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -68,7 +68,7 @@ namespace WPF
                 notes.Clear();
                 foreach (var note in _materialObject.Notes.Distinct())
                 {
-                    notes.Add(note.Content + " - " + note.CreatedDate);
+                    notes.Add(note.Content);
                 }
                 NotesTextbox.Text = string.Join(" // ", notes);
             }
@@ -131,17 +131,7 @@ namespace WPF
             }            
         }
 
-        
-        void AllBlankImages()
-        {
-            MatchPointImage.ImageSource = noImageImg;
-            V2Image.ImageSource = noImageImg;
-            H2Image.ImageSource = noImageImg;
-            V2H2Image.ImageSource = noImageImg;
-            FullRepeatImage.ImageSource = noImageImg;
-        }
-
-        void CheckForBlankImage(ImageSource img)
+        static void CheckForBlankImage(ImageSource img)
         {
             if(img.ToString() == "pack://application:,,,/Verseteel%20Material%20Data%20Log;component/viewdatapage.xaml")
             {

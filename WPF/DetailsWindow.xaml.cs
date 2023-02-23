@@ -24,16 +24,16 @@ namespace WPF
     {
 
         MaterialObject? _materialObject = new();
-        Border DetailsBorder = new();
-        ScrollViewer scroll = new();
+        FlowDocument _flowDoc = new();
+        StackPanel _panel = new();
 
         public DetailsWindow(MaterialObject materialObject)
         {
             _materialObject = materialObject;
             InitializeComponent();
             ContentFrame.Content = new ViewDataPage(_materialObject);
-            DetailsBorder = ViewDataPage.border;
-            scroll = ViewDataPage.scrollViewer;
+            _flowDoc = ViewDataPage.flowDoc;
+            _panel = ViewDataPage.stackPanel;
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
@@ -46,18 +46,22 @@ namespace WPF
         private void PrintBtn_Click(object sender, RoutedEventArgs e)
         {
             PrintDialog printDlg = new();
-            ScrollViewer sv;
+            FlowDocument fd = new();
+
+            
 
             if(printDlg.ShowDialog() == true)
             {
-                sv = scroll;
-                PrintCapabilities capabilities = printDlg.PrintQueue.GetPrintCapabilities(printDlg.PrintTicket);
-                double scale = Math.Min(capabilities.PageImageableArea.ExtentWidth / sv.ActualWidth, capabilities.PageImageableArea.ExtentHeight / sv.ActualHeight);
-                sv.LayoutTransform = new ScaleTransform(scale, scale);
-                Size size = new(capabilities.PageImageableArea.ExtentWidth, capabilities.PageImageableArea.ExtentHeight);
-                sv.Measure(size);
-                sv.Arrange(new Rect(new Point(capabilities.PageImageableArea.OriginWidth, capabilities.PageImageableArea.OriginHeight), size));
-                printDlg.PrintVisual(sv, "Details");
+                fd = _flowDoc;
+                _panel.Visibility = Visibility.Collapsed;
+                IDocumentPaginatorSource source = fd;
+              
+                fd.PageWidth = printDlg.PrintableAreaWidth;
+                fd.PageHeight = printDlg.PrintableAreaHeight;
+                fd.ColumnWidth = printDlg.PrintableAreaWidth;
+                fd.PagePadding = new Thickness(30, 50, 20, 30);
+
+                printDlg.PrintDocument(source.DocumentPaginator, "Details");
             }
             ContentFrame.Content = new ViewDataPage(_materialObject);
         }
