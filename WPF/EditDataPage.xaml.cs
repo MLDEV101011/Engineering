@@ -228,12 +228,24 @@ namespace WPF
             _materialObject.Pattern = PatternTextBox.Text;
             _materialObject.Color = ColorTextBox.Text;
             _materialObject.ProductNum = ProdNumTextBox.Text;
-            ValidateAllInputs();
+            _materialObject.VertRepeat = ValidateInputForDouble(VertRepeatTextBox);
+            _materialObject.HorzRepeat = ValidateInputForDouble(HorzRepeatTextBox);
+            _materialObject.Durability = ValidateInputForInteger(DurabilityTextBox);
+            _materialObject.Width = ValidateInputForDouble(WidthTextBox);
+            _materialObject.Weight = ValidateInputForDouble(WeightTextBox);
+            _materialObject.RollWidth = ValidateInputForDouble(RollWidthTextBox);
+            _materialObject.UsableWidth = ValidateInputForDouble(UsableWidthTextBox);
+            _materialObject.StretchAcrossWidth = ValidateInputForDouble(StretchAcrossTextBox);
+            _materialObject.StretchDownLength = ValidateInputForDouble(StretchDownTextBox);
+            _materialObject.RepeatAcrossWidth = ValidateInputForDouble(RepeatAcrossTextBox);
+            _materialObject.RepeatDownLength = ValidateInputForDouble(RepeatDownTextBox);
+            _materialObject.SalvageToMatchOffset = ValidateInputForDouble(SavlageToMatchTextBox);
+            _materialObject.EndToMatchOffset = ValidateInputForDouble(EndOfRollTextBox);
             GetNewCheckBoxVals();
             GetFileInputValues();
             GetNewNote();
 
-
+            context.Materials.Update(_materialObject);
             context.SaveChanges();
 
 
@@ -379,40 +391,32 @@ namespace WPF
             }
         }
 
-        static void ValidateInputForDouble(TextBox input)
+        static double ValidateInputForDouble(TextBox input)
         {
             bool result = double.TryParse(input.Text, out double i);
             if (result)
             {
-                input.Text = input.Text;
+                i = double.Parse(input.Text);
             }
             else
             {
-                MessageBox.Show("Input for " + input.Name + " must be a number.", "Error");
-                return;
+                i = 0.00;
             }
+            return i;
         }
 
-        static void ValidateInputForInteger(TextBox input)
+        static int ValidateInputForInteger(TextBox input)
         {
             bool result = int.TryParse(input.Text, out int i);
             if (result)
             {
-                input.Text = input.Text;
+                i = int.Parse(input.Text);
             }
             else
             {
-                bool isInt = double.TryParse(input.Text, out double d);
-                if (isInt)
-                {
-                    MessageBox.Show("Input for " + input.Name + " must be a whole number.");
-                    return;
-                }
-                else
-                {
-                    MessageBox.Show("Input for " + input.Name + " must be a whole number.");
-                }
+                i = 0;
             }
+            return i;
         }
 
 

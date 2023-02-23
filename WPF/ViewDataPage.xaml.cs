@@ -29,6 +29,7 @@ namespace WPF
         List<string> images = new();
 
         public static Border border;
+        public static ScrollViewer scrollViewer;
 
         BitmapImage noImageImg = new(new Uri("no_image.png", UriKind.Relative));
         public ViewDataPage(MaterialObject materialObject)
@@ -36,6 +37,7 @@ namespace WPF
             _materialObject = _context.Materials.Include(x => x.Images).Include(x => x.Notes).Include(x => x.ApprovedMatches).FirstOrDefault(v => v.Id.Equals(materialObject.Id)) as MaterialObject;
             InitializeComponent();
             border = DetailsView;
+            scrollViewer = ScrollViewer1;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
