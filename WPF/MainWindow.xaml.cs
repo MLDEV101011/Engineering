@@ -165,6 +165,10 @@ namespace WPF
             }
             else
             {
+                NoteObject newNote = new()
+                {
+                    Content = NotesEntry.Text,
+                };
                 var material = new MaterialObject()
                 {
                     Vendor = VendorEntry.Text,
@@ -174,7 +178,10 @@ namespace WPF
                     Railroaded = RailroadedComboBox.Text,
                     Backing = BackingComboBox.Text,
                     Images = newImages
+                    
                 };
+
+                material?.Notes?.Add(newNote);
 
                 CheckDoubleFieldsForNulls(VertRepeatEntry.Text, material.VertRepeat);
                 CheckDoubleFieldsForNulls(HorzRepeatEntry.Text, material.HorzRepeat);
@@ -207,6 +214,8 @@ namespace WPF
                 ClearEntries();
                 MaterialDataGrid.ItemsSource = null;
                 MaterialDataGrid.ItemsSource = context.Materials.ToList();
+
+                MessageBox.Show("Successfully added new data.", "Success");
             }
         }
 

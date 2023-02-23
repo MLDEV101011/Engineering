@@ -22,47 +22,48 @@
             Padding="20"
             BorderBrush="Black"
             BorderThickness="1">
-            <ScrollViewer
-                x:Name="ScrollViewer1"
-                HorizontalScrollBarVisibility="Auto"
-                VerticalScrollBarVisibility="Auto">
-                <StackPanel Orientation="Vertical">
-                    <Label
-                        x:Name="TitleLable"
-                        HorizontalContentAlignment="Center"
-                        FontSize="25"
-                        FontWeight="SemiBold" />
-
-
-                    <StackPanel Margin="0,20" Orientation="Vertical">
-                        <StackPanel Margin="0,2" Orientation="Horizontal">
-                            <TextBlock
-                                FontSize="14"
-                                FontWeight="Bold"
-                                Text="VENDOR:  " />
-                            <TextBlock x:Name="VendorTextbox" FontSize="14" />
+            <FlowDocumentScrollViewer>
+                <FlowDocument x:Name="FlowDocument1" PagePadding="10">
+                    <BlockUIContainer>
+                        <StackPanel Orientation="Vertical">
+                            <Label
+                                x:Name="TitleLable"
+                                HorizontalContentAlignment="Center"
+                                FontSize="25"
+                                FontWeight="SemiBold" />                            
+                            <StackPanel Margin="0,20" Orientation="Vertical">
+                                <StackPanel Margin="0,2" Orientation="Horizontal">
+                                    <TextBlock
+                                        FontSize="14"
+                                        FontWeight="Bold"
+                                        Text="VENDOR:  " />
+                                    <TextBlock x:Name="VendorTextbox" FontSize="14" />
+                                </StackPanel>
+                                <StackPanel Margin="0,2" Orientation="Horizontal">
+                                    <TextBlock
+                                        FontSize="14"
+                                        FontWeight="Bold"
+                                        Text="PATTERN:  " />
+                                    <TextBlock x:Name="PatternTextbox" FontSize="14" />
+                                </StackPanel>
+                                <StackPanel Margin="0,2" Orientation="Horizontal">
+                                    <TextBlock
+                                        FontSize="14"
+                                        FontWeight="Bold"
+                                        Text="COLOR:  " />
+                                    <TextBlock x:Name="ColorTextbox" FontSize="14" />
+                                </StackPanel>
+                                <StackPanel Margin="0,2" Orientation="Horizontal">
+                                    <TextBlock
+                                        FontSize="14"
+                                        FontWeight="Bold"
+                                        Text="PRODUCT NUMBER:  " />
+                                    <TextBlock x:Name="ProdNumTextbox" FontSize="14" />
+                                </StackPanel>
+                            </StackPanel>
                         </StackPanel>
-                        <StackPanel Margin="0,2" Orientation="Horizontal">
-                            <TextBlock
-                                FontSize="14"
-                                FontWeight="Bold"
-                                Text="PATTERN:  " />
-                            <TextBlock x:Name="PatternTextbox" FontSize="14" />
-                        </StackPanel>
-                        <StackPanel Margin="0,2" Orientation="Horizontal">
-                            <TextBlock
-                                FontSize="14"
-                                FontWeight="Bold"
-                                Text="COLOR:  " />
-                            <TextBlock x:Name="ColorTextbox" FontSize="14" />
-                        </StackPanel>
-                        <StackPanel Margin="0,2" Orientation="Horizontal">
-                            <TextBlock
-                                FontSize="14"
-                                FontWeight="Bold"
-                                Text="PRODUCT NUMBER:  " />
-                            <TextBlock x:Name="ProdNumTextbox" FontSize="14" />
-                        </StackPanel>
+                    </BlockUIContainer>
+                    <BlockUIContainer>
                         <GroupBox
                             Margin="0,20,0,10"
                             Padding="10"
@@ -132,6 +133,9 @@
                                 </StackPanel>
                             </StackPanel>
                         </GroupBox>
+                    </BlockUIContainer>
+
+                    <BlockUIContainer>
                         <GroupBox
                             Margin="0,10,0,20"
                             Padding="10"
@@ -242,151 +246,140 @@
                                 </StackPanel>
                             </StackPanel>
                         </GroupBox>
-                        <GroupBox
-                            Margin="0,10,0,0"
-                            Padding="10"
-                            HorizontalContentAlignment="Center"
-                            FontSize="18"
-                            FontWeight="Bold"
-                            Header="IMAGES">
+                    </BlockUIContainer>
+                    <BlockUIContainer>
+                        <StackPanel Grid.Row="2" Orientation="Vertical">
+                            <Border
+                                x:Name="FullRepeatGrid"
+                                Grid.Column="4"
+                                Width="775"
+                                Height="775"
+                                Margin="10"
+                                Padding="10"
+                                Cursor="Hand"
+                                MouseLeftButtonDown="FullRepeatGrid_MouseLeftButtonDown">
+                                <Border.Background>
+                                    <ImageBrush
+                                        x:Name="FullRepeatImage"
+                                        ImageSource="no_image.png"
+                                        Stretch="UniformToFill" />
+                                </Border.Background>
+                            </Border>
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontSize="12"
+                                Text="Full Repeat Match Point" />
+                        </StackPanel>
+                    </BlockUIContainer>
+
+                    <BlockUIContainer>
+                        <StackPanel x:Name="Thumbnails" Orientation="Vertical">
                             <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="0" HorizontalAlignment="Center">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="1*" />
-                                        <RowDefinition Height="1*" />
-                                        <RowDefinition Height="2*" />
-                                    </Grid.RowDefinitions>
-                                    <Grid Grid.Row="0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition />
-                                            <ColumnDefinition />
-                                        </Grid.ColumnDefinitions>
-                                        <StackPanel Grid.Column="0" Orientation="Vertical">
-                                            <Border
-                                                x:Name="MatchPointGrid"
-                                                Width="400"
-                                                Height="400"
-                                                Margin="10"
-                                                Padding="10"
-                                                Cursor="Hand"
-                                                MouseLeftButtonDown="MatchPointGrid_MouseDown">
-                                                <Border.Background>
-                                                    <ImageBrush
-                                                        x:Name="MatchPointImage"
-                                                        ImageSource="no_image.png"
-                                                        Stretch="UniformToFill" />
-                                                </Border.Background>
-                                            </Border>
-                                            <TextBlock
-                                                HorizontalAlignment="Center"
-                                                FontSize="12"
-                                                Text="Match Point" />
-                                        </StackPanel>
-                                        <StackPanel
-                                            Grid.Column="1"
-                                            HorizontalAlignment="Center"
-                                            Orientation="Vertical">
-                                            <Border
-                                                x:Name="V2Grid"
-                                                Width="400"
-                                                Height="400"
-                                                Margin="10"
-                                                Padding="10"
-                                                Cursor="Hand"
-                                                MouseLeftButtonDown="V2Grid_MouseDown">
-                                                <Border.Background>
-                                                    <ImageBrush
-                                                        x:Name="V2Image"
-                                                        ImageSource="no_image.png"
-                                                        Stretch="UniformToFill" />
-                                                </Border.Background>
-                                            </Border>
-                                            <TextBlock
-                                                HorizontalAlignment="Center"
-                                                FontSize="12"
-                                                Text="V2 Match Point" />
-                                        </StackPanel>
-                                    </Grid>
-                                    <Grid Grid.Row="1">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition />
-                                            <ColumnDefinition />
-                                        </Grid.ColumnDefinitions>
-                                        <StackPanel Grid.Column="0" Orientation="Vertical">
-                                            <Border
-                                                x:Name="H2Grid"
-                                                Grid.Column="2"
-                                                Width="400"
-                                                Height="400"
-                                                Margin="10"
-                                                Padding="10"
-                                                Cursor="Hand"
-                                                MouseLeftButtonDown="H2Grid_MouseLeftButtonDown">
-                                                <Border.Background>
-                                                    <ImageBrush
-                                                        x:Name="H2Image"
-                                                        ImageSource="no_image.png"
-                                                        Stretch="UniformToFill" />
-                                                </Border.Background>
-                                            </Border>
-                                            <TextBlock
-                                                HorizontalAlignment="Center"
-                                                FontSize="12"
-                                                Text="H2 Match Point" />
-                                        </StackPanel>
-                                        <StackPanel Grid.Column="1" Orientation="Vertical">
-                                            <Border
-                                                x:Name="V2H2Grid"
-                                                Width="400"
-                                                Height="400"
-                                                Margin="10"
-                                                Padding="10"
-                                                Cursor="Hand"
-                                                MouseLeftButtonDown="V2H2Grid_MouseLeftButtonDown">
-                                                <Border.Background>
-                                                    <ImageBrush
-                                                        x:Name="V2H2Image"
-                                                        ImageSource="no_image.png"
-                                                        Stretch="UniformToFill" />
-                                                </Border.Background>
-                                            </Border>
-                                            <TextBlock
-                                                HorizontalAlignment="Center"
-                                                FontSize="12"
-                                                Text="V2H2 Match Point" />
-                                        </StackPanel>
-                                    </Grid>
-                                    <StackPanel Grid.Row="2" Orientation="Vertical">
-                                        <Border
-                                            x:Name="FullRepeatGrid"
-                                            Grid.Column="4"
-                                            Width="800"
-                                            Height="800"
-                                            Margin="10"
-                                            Padding="10"
-                                            Cursor="Hand"
-                                            MouseLeftButtonDown="FullRepeatGrid_MouseLeftButtonDown">
-                                            <Border.Background>
-                                                <ImageBrush
-                                                    x:Name="FullRepeatImage"
-                                                    ImageSource="no_image.png"
-                                                    Stretch="UniformToFill" />
-                                            </Border.Background>
-                                        </Border>
-                                        <TextBlock
-                                            HorizontalAlignment="Center"
-                                            FontSize="12"
-                                            Text="Full Repeat Match Point" />
-                                    </StackPanel>
-                                </Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" Orientation="Vertical">
+                                    <Border
+                                        x:Name="MatchPointGrid"
+                                        Width="350"
+                                        Height="350"
+                                        Margin="10"
+                                        Padding="10"
+                                        Cursor="Hand"
+                                        MouseLeftButtonDown="MatchPointGrid_MouseDown">
+                                        <Border.Background>
+                                            <ImageBrush
+                                                x:Name="MatchPointImage"
+                                                ImageSource="no_image.png"
+                                                Stretch="UniformToFill" />
+                                        </Border.Background>
+                                    </Border>
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontSize="12"
+                                        Text="Match Point" />
+                                </StackPanel>
+                                <StackPanel
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Center"
+                                    Orientation="Vertical">
+                                    <Border
+                                        x:Name="V2Grid"
+                                        Width="350"
+                                        Height="350"
+                                        Margin="10"
+                                        Padding="10"
+                                        Cursor="Hand"
+                                        MouseLeftButtonDown="V2Grid_MouseDown">
+                                        <Border.Background>
+                                            <ImageBrush
+                                                x:Name="V2Image"
+                                                ImageSource="no_image.png"
+                                                Stretch="UniformToFill" />
+                                        </Border.Background>
+                                    </Border>
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontSize="12"
+                                        Text="V2 Match Point" />
+                                </StackPanel>
                             </Grid>
-                        </GroupBox>
-                    </StackPanel>
-                </StackPanel>
-            </ScrollViewer>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" Orientation="Vertical">
+                                    <Border
+                                        x:Name="H2Grid"
+                                        Grid.Column="2"
+                                        Width="350"
+                                        Height="350"
+                                        Margin="10"
+                                        Padding="10"
+                                        Cursor="Hand"
+                                        MouseLeftButtonDown="H2Grid_MouseLeftButtonDown">
+                                        <Border.Background>
+                                            <ImageBrush
+                                                x:Name="H2Image"
+                                                ImageSource="no_image.png"
+                                                Stretch="UniformToFill" />
+                                        </Border.Background>
+                                    </Border>
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontSize="12"
+                                        Text="H2 Match Point" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Orientation="Vertical">
+                                    <Border
+                                        x:Name="V2H2Grid"
+                                        Width="350"
+                                        Height="350"
+                                        Margin="10"
+                                        Padding="10"
+                                        Cursor="Hand"
+                                        MouseLeftButtonDown="V2H2Grid_MouseLeftButtonDown">
+                                        <Border.Background>
+                                            <ImageBrush
+                                                x:Name="V2H2Image"
+                                                ImageSource="no_image.png"
+                                                Stretch="UniformToFill" />
+                                        </Border.Background>
+                                    </Border>
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontSize="12"
+                                        Text="V2H2 Match Point" />
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </BlockUIContainer>
+
+                </FlowDocument>
+            </FlowDocumentScrollViewer>
         </Border>
     </Grid>
 </Page>
