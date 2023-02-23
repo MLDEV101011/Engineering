@@ -25,6 +25,7 @@ namespace WPF
 
         MaterialObject? _materialObject = new();
         Border DetailsBorder = new();
+        ScrollViewer scroll = new();
 
         public DetailsWindow(MaterialObject materialObject)
         {
@@ -32,6 +33,7 @@ namespace WPF
             InitializeComponent();
             ContentFrame.Content = new ViewDataPage(_materialObject);
             DetailsBorder = ViewDataPage.border;
+            scroll = ViewDataPage.scrollViewer;
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
@@ -44,18 +46,18 @@ namespace WPF
         private void PrintBtn_Click(object sender, RoutedEventArgs e)
         {
             PrintDialog printDlg = new();
-            Border frame;
+            ScrollViewer sv;
 
             if(printDlg.ShowDialog() == true)
-            {               
-                frame = DetailsBorder;
+            {
+                sv = scroll;
                 PrintCapabilities capabilities = printDlg.PrintQueue.GetPrintCapabilities(printDlg.PrintTicket);
-                double scale = Math.Min(capabilities.PageImageableArea.ExtentWidth / frame.ActualWidth, capabilities.PageImageableArea.ExtentHeight / frame.ActualHeight);
-                frame.LayoutTransform = new ScaleTransform(scale, scale);
+                double scale = Math.Min(capabilities.PageImageableArea.ExtentWidth / sv.ActualWidth, capabilities.PageImageableArea.ExtentHeight / sv.ActualHeight);
+                sv.LayoutTransform = new ScaleTransform(scale, scale);
                 Size size = new(capabilities.PageImageableArea.ExtentWidth, capabilities.PageImageableArea.ExtentHeight);
-                frame.Measure(size);
-                frame.Arrange(new Rect(new Point(capabilities.PageImageableArea.OriginWidth, capabilities.PageImageableArea.OriginHeight), size));
-                printDlg.PrintVisual(frame, "Details");
+                sv.Measure(size);
+                sv.Arrange(new Rect(new Point(capabilities.PageImageableArea.OriginWidth, capabilities.PageImageableArea.OriginHeight), size));
+                printDlg.PrintVisual(sv, "Details");
             }
             ContentFrame.Content = new ViewDataPage(_materialObject);
         }
