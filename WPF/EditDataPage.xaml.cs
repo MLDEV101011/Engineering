@@ -342,7 +342,7 @@ namespace WPF
                 {
                     ImageObject newImg = new()
                     {
-                        Name = @"(V2 MATCH POINT DETAIL VIEW)",
+                        Name = @"(H2 MATCH POINT DETAIL VIEW)",
                         FilePath = H2TextBox.Text,
                     };
                     _images.Add(newImg);
@@ -351,7 +351,7 @@ namespace WPF
                 {
                     ImageObject newImg = new()
                     {
-                        Name = @"(H2 MATCH POINT DETAIL VIEW)",
+                        Name = @"(V2 MATCH POINT DETAIL VIEW)",
                         FilePath = V2TextBox.Text,
                     };
                     _images.Add(newImg);

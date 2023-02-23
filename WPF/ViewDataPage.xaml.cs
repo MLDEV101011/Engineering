@@ -139,34 +139,43 @@ namespace WPF
             FullRepeatImage.ImageSource = noImageImg;
         }
 
+        void CheckForBlankImage(ImageSource img)
+        {
+            if(img.ToString() == "pack://application:,,,/Verseteel%20Material%20Data%20Log;component/viewdatapage.xaml")
+            {
+                return;
+            }
+            else
+            {
+                ImageViewWindow imageViewWindow = new(img);
+                imageViewWindow.ShowDialog();
+            }
+        }
+
         private void MatchPointGrid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ImageViewWindow imageViewWindow = new(new BitmapImage(new Uri(images[0])));
-            imageViewWindow.Show();
+            CheckForBlankImage(MatchPointImage.ImageSource);
         }
 
         private void V2Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ImageViewWindow imageViewWindow = new(new BitmapImage(new Uri(images[1])));
-            imageViewWindow.Show();
+            CheckForBlankImage(V2Image.ImageSource);
+
         }
 
         private void H2Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ImageViewWindow imageViewWindow = new(new BitmapImage(new Uri(images[2])));
-            imageViewWindow.Show();
+            CheckForBlankImage(H2Image.ImageSource);
         }
 
         private void V2H2Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ImageViewWindow imageViewWindow = new(new BitmapImage(new Uri(images[3])));
-            imageViewWindow.Show();
+            CheckForBlankImage(V2H2Image.ImageSource);
         }
 
         private void FullRepeatGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ImageViewWindow imageViewWindow = new(new BitmapImage(new Uri(images[4])));
-            imageViewWindow.Show();
+            CheckForBlankImage(FullRepeatImage.ImageSource);
         }
     }
 }

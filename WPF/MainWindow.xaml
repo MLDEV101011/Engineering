@@ -306,11 +306,21 @@
                 VerticalScrollBarVisibility="Auto">
                 <Border Margin="20" Padding="20">
                     <StackPanel Orientation="Vertical">
-                        <Label Content="Add New Data" FontSize="25" />
+                        <Label
+                            Margin="0"
+                            Padding="0"
+                            Content="Add New Data"
+                            FontSize="25" />
+                        <Label
+                            Margin="0"
+                            Padding="0"
+                            Content="* indicates required field."
+                            FontFamily="12"
+                            Foreground="Red" />
 
                         <WrapPanel Orientation="Horizontal">
                             <StackPanel Margin="0,10,0,0" Orientation="Vertical">
-                                <TextBlock FontSize="14" Text="Vendor" />
+                                <TextBlock FontSize="14" Text="Vendor *" />
                                 <Border
                                     Width="250"
                                     Margin="0,0,20,0"
@@ -365,7 +375,7 @@
                                 </Border>
                             </StackPanel>
                             <StackPanel Margin="0,10,0,0" Orientation="Vertical">
-                                <TextBlock FontSize="14" Text="Pattern" />
+                                <TextBlock FontSize="14" Text="Pattern *" />
                                 <Border
                                     Width="250"
                                     Margin="0,0,20,0"
@@ -420,7 +430,7 @@
                                 </Border>
                             </StackPanel>
                             <StackPanel Margin="0,10,0,0" Orientation="Vertical">
-                                <TextBlock FontSize="14" Text="Color" />
+                                <TextBlock FontSize="14" Text="Color *" />
                                 <Border
                                     Width="250"
                                     Margin="0,0,20,0"
@@ -475,7 +485,7 @@
                                 </Border>
                             </StackPanel>
                             <StackPanel Margin="0,10,0,0" Orientation="Vertical">
-                                <TextBlock FontSize="14" Text="Product Number" />
+                                <TextBlock FontSize="14" Text="Product Number *" />
                                 <Border
                                     Width="250"
                                     Margin="0,0,20,0"

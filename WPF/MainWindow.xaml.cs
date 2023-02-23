@@ -137,9 +137,6 @@ namespace WPF
             // get selected object
             var selectedMaterialObj = MaterialDataGrid.SelectedItem as MaterialObject;
 
-            //selectedMaterialObj.Images = images.Where(x => x.MaterialId == selectedMaterialObj.Id).ToList();
-            //selectedMaterialObj.Notes = notes.Where(x => x.MaterialId == selectedMaterialObj.Id).ToList();
-            //selectedMaterialObj.ApprovedMatches = approvedMatches.Where(x => x.MaterialId == selectedMaterialObj.Id).ToList();
             DetailsWindow detailsWindow = new(selectedMaterialObj);
             detailsWindow.Show();
         }        
@@ -150,7 +147,6 @@ namespace WPF
             approvedMatches = context.ApprovedMatches.ToList();
             notes = context.Notes.ToList();
             images = context.Images.ToList();
-            //MaterialDataGrid.ItemsSource = materials; 
         }        
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
@@ -160,51 +156,79 @@ namespace WPF
 
         private void SubmitBtn_Click(object sender, RoutedEventArgs e)
         {
-            
-            var material = new MaterialObject()
+            if (string.IsNullOrEmpty(VendorEntry.Text) ||
+                string.IsNullOrEmpty(PatternEntry.Text) ||
+                string.IsNullOrEmpty(ColorEntry.Text) ||
+                string.IsNullOrEmpty(ProdNumEntry.Text))
             {
-                Vendor = VendorEntry.Text,
-                Pattern = PatternEntry.Text,
-                Color = ColorEntry.Text,
-                ProductNum = ProdNumEntry.Text,
-                VertRepeat = double.Parse(VertRepeatEntry.Text),
-                HorzRepeat = double.Parse(HorzRepeatEntry.Text),
-                Railroaded = RailroadedComboBox.Text,
-                Durability = int.Parse(DurabilityEntry.Text),
-                Backing = BackingComboBox.Text,
-                Width = double.Parse(WidthEntry.Text),
-                Weight = double.Parse(WeightEntry.Text),
-                RollWidth = double.Parse(RollWidthEntry.Text),
-                UsableWidth = double.Parse(UsableWidthEntry.Text),
-                StretchAcrossWidth = double.Parse(StretchAcrossEntry.Text),
-                StretchDownLength = double.Parse(StretchDownEntry.Text),
-                RepeatAcrossWidth = double.Parse(RepeatAcrossEntry.Text),
-                RepeatDownLength = double.Parse(RepeatDownEntry.Text),
-                EndToMatchOffset = double.Parse(EndToMatchEntry.Text),
-                SalvageToMatchOffset = double.Parse(SalvageToMatchEntry.Text),
-                Images = newImages
-            };
-
-            
-            GetCheckBoxValues();
-            foreach (var x in matches)
-            {
-                ApprovedMatchObject am = new()
-                {
-                    MatchType = x,
-                    IsChecked = true
-                };
-                material?.ApprovedMatches?.Add(am);
+                MessageBox.Show("Please fill out all required fields.", "Error");
             }
+            else
+            {
+                var material = new MaterialObject()
+                {
+                    Vendor = VendorEntry.Text,
+                    Pattern = PatternEntry.Text,
+                    Color = ColorEntry.Text,
+                    ProductNum = ProdNumEntry.Text,
+                    Railroaded = RailroadedComboBox.Text,
+                    Backing = BackingComboBox.Text,
+                    Images = newImages
+                };
 
-            context.Materials.Add(material);
-            context.SaveChanges();
+                CheckDoubleFieldsForNulls(VertRepeatEntry.Text, material.VertRepeat);
+                CheckDoubleFieldsForNulls(HorzRepeatEntry.Text, material.HorzRepeat);
+                CheckIntegerFieldsForNulls(DurabilityEntry.Text, material.Durability);
+                CheckDoubleFieldsForNulls(WidthEntry.Text, material.Width);
+                CheckDoubleFieldsForNulls(WeightEntry.Text, material.Weight);
+                CheckDoubleFieldsForNulls(RollWidthEntry.Text, material.RollWidth);
+                CheckDoubleFieldsForNulls(UsableWidthEntry.Text, material.UsableWidth);
+                CheckDoubleFieldsForNulls(StretchAcrossEntry.Text, material.StretchAcrossWidth);
+                CheckDoubleFieldsForNulls(StretchDownEntry.Text, material.StretchDownLength);
+                CheckDoubleFieldsForNulls(RepeatAcrossEntry.Text, material.RepeatAcrossWidth);
+                CheckDoubleFieldsForNulls(RepeatDownEntry.Text, material.RepeatDownLength);
+                CheckDoubleFieldsForNulls(EndToMatchEntry.Text, material.EndToMatchOffset);
+                CheckDoubleFieldsForNulls(SalvageToMatchEntry.Text, material.SalvageToMatchOffset);
 
-            ClearEntries();
-            MaterialDataGrid.ItemsSource = null;
-            MaterialDataGrid.ItemsSource = context.Materials.ToList();
+                GetCheckBoxValues();
+                foreach (var x in matches)
+                {
+                    ApprovedMatchObject am = new()
+                    {
+                        MatchType = x,
+                        IsChecked = true
+                    };
+                    material?.ApprovedMatches?.Add(am);
+                }
+
+                context.Materials.Add(material);
+                context.SaveChanges();
+
+                ClearEntries();
+                MaterialDataGrid.ItemsSource = null;
+                MaterialDataGrid.ItemsSource = context.Materials.ToList();
+            }
         }
 
+        static void CheckDoubleFieldsForNulls(string str, double matField)
+        {
+            if (!string.IsNullOrEmpty(str))
+            {
+                double val;
+                if (!double.TryParse(str, out val)) val = 0.0;
+                matField = val;
+            }
+        }
+
+        void CheckIntegerFieldsForNulls(string str, int matField)
+        {
+            if (!string.IsNullOrEmpty(str))
+            {
+                int val;
+                if (!int.TryParse(str, out val)) val = 0;
+                matField = val;
+            }
+        }
 
 
         private void OpenFileBtn_Click(object sender, RoutedEventArgs e)

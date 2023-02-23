@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace WPF
@@ -9,14 +10,14 @@ namespace WPF
     public partial class ImageViewWindow : Window
     {
 
-        BitmapImage _image;
+        ImageSource _image;
 
         public ImageViewWindow()
         {
             InitializeComponent();
         }
 
-        public ImageViewWindow(BitmapImage image)
+        public ImageViewWindow(ImageSource image)
         {
             this._image = image;
             InitializeComponent();

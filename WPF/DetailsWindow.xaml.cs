@@ -47,20 +47,12 @@ namespace WPF
             Border frame;
 
             if(printDlg.ShowDialog() == true)
-            {
-                //frame = DetailsBorder;
-                //frame.BorderThickness = new Thickness(0);
-                //Size pageSize = new(printDlg.PrintableAreaWidth - 30, printDlg.PrintableAreaHeight - 30);
-                //frame.Measure(pageSize);
-                //frame.Arrange(new Rect(15,15,pageSize.Width,pageSize.Height));
-                //printDlg.PrintVisual(frame, "Details");
-
-
+            {               
                 frame = DetailsBorder;
                 PrintCapabilities capabilities = printDlg.PrintQueue.GetPrintCapabilities(printDlg.PrintTicket);
                 double scale = Math.Min(capabilities.PageImageableArea.ExtentWidth / frame.ActualWidth, capabilities.PageImageableArea.ExtentHeight / frame.ActualHeight);
                 frame.LayoutTransform = new ScaleTransform(scale, scale);
-                Size size = new Size(capabilities.PageImageableArea.ExtentWidth, capabilities.PageImageableArea.ExtentHeight);
+                Size size = new(capabilities.PageImageableArea.ExtentWidth, capabilities.PageImageableArea.ExtentHeight);
                 frame.Measure(size);
                 frame.Arrange(new Rect(new Point(capabilities.PageImageableArea.OriginWidth, capabilities.PageImageableArea.OriginHeight), size));
                 printDlg.PrintVisual(frame, "Details");
