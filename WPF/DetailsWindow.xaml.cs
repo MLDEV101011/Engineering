@@ -27,7 +27,7 @@ namespace WPF
         List<string> notes = new();
         List<string> images = new();
 
-        BitmapImage noImageImg = new(new Uri("no_image.png"));
+        BitmapImage noImageImg = new(new Uri("no_image.png", UriKind.Relative));
         public DetailsWindow(MaterialObject materialObject)
         {
             _materialObject = materialObject;
@@ -117,31 +117,31 @@ namespace WPF
 
         private void MatchPointGrid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ImageViewWindow imageViewWindow = new(new BitmapImage(new Uri(images[0])));
+            ImageViewWindow imageViewWindow = new(new BitmapImage(new Uri(images[0], UriKind.Relative)));
             imageViewWindow.Show();
         }
 
         private void V2Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ImageViewWindow imageViewWindow = new(new BitmapImage(new Uri(images[1])));
+            ImageViewWindow imageViewWindow = new(new BitmapImage(new Uri(images[1], UriKind.Relative)));
             imageViewWindow.Show();
         }
 
         private void H2Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ImageViewWindow imageViewWindow = new(new BitmapImage(new Uri(images[2])));
+            ImageViewWindow imageViewWindow = new(new BitmapImage(new Uri(images[2], UriKind.Relative)));
             imageViewWindow.Show();
         }
 
         private void V2H2Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ImageViewWindow imageViewWindow = new(new BitmapImage(new Uri(images[3])));
+            ImageViewWindow imageViewWindow = new(new BitmapImage(new Uri(images[3], UriKind.Relative)));
             imageViewWindow.Show();
         }
 
         private void FullRepeatGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ImageViewWindow imageViewWindow = new(new BitmapImage(new Uri(images[4])));
+            ImageViewWindow imageViewWindow = new(new BitmapImage(new Uri(images[4], UriKind.Relative)));
             imageViewWindow.Show();
         }
     }
